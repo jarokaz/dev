@@ -50,6 +50,10 @@ resource "google_compute_instance" "dlvm" {
         on_host_maintenance = "TERMINATE"
     }
 
+    metadata = {
+        install-nvidia-driver = "True"
+    }    
+
     metadata_startup_script = data.template_file.startup_script.rendered
 
 }
