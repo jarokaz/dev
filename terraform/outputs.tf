@@ -1,6 +1,6 @@
-output "server_cluster_name" {
-    value = module.server-cluster.name
-}
+#output "vpc_name" {
+#    value = module.vpc.network_name
+#}
 
 
 

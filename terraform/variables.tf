@@ -9,6 +9,12 @@ variable "region" {
     type        = string
 }
 
+variable "network_name" {
+    description = "The name of the VPC"
+    type        = string
+    default     = ""
+}
+
 variable "zones" {
     description = "The zones for clusters"
     type        = list
@@ -44,6 +50,11 @@ variable "gpu_count" {
 variable "subnet_ip_range" {
     description = "The IP address range for the environment's subnet"
     default     = "10.128.0.0/14"
+}
+
+variable "image_family" {
+    description = "DLVM image family"
+    default     = "common-cu110"
 }
 
 

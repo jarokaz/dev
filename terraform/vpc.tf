@@ -3,6 +3,7 @@ module "vpc" {
     network_name  = "${var.name_prefix}-vpc"
     project_id    = module.project-services.project_id
     routing_mode  = "GLOBAL"
+    count         = var.network_name != "" ? 0 : 1
 
     subnets = [
         {
