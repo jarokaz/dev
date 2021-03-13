@@ -17,6 +17,8 @@ provider "google" {
 
 data "google_client_config" "current" {}
 
+data "google_compute_default_service_account" "default" {}
+
 data "google_project" "project" {
   project_id = var.project_id
 }
@@ -32,6 +34,17 @@ module "vpc" {
     network_name =  "${var.name_prefix}-network"
     subnet_name  =  "${var.name_prefix}-subnet"
     count        = var.network_name != "" ? 0 : 1
+}
+
+module "dlvm" {
+    source  = "./dlvm"
+    name            = "${var.name_prefix}-vm"
+    zone            = var.zone
+    network         = local.network_name
+    subnetwork      = local.subnet_name
+    machine_type    = var.machine_type
+    image_family    = var.image_family
+    service_account = data.google_compute_default_service_account.default.email
 }
 
 output "project" {

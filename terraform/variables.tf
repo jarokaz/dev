@@ -21,18 +21,13 @@ variable "subnet_name" {
     default     = ""
 }
 
-variable "zones" {
+variable "zone" {
     description = "The zones for clusters"
-    type        = list
+    type        = string
 }
 
 variable "name_prefix" {
     description = "The prefix for the resources"
-    type        = string
-}
-
-variable "DLVM_image" {
-    description = "The DLVM image"
     type        = string
 }
 
