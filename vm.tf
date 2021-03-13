@@ -1,13 +1,15 @@
 
 locals {
     startup_script = "${path.module}/assets/startup-script.sh"
+    network        = var.network_name != "" var.net
+    subnetwork     = var.subnetwork_name
 }
 
 data "template_file" "startup_script" {
     template = file(local.startup_script)
 
     vars = {
-        cuda_version = var.cuda_version
+        gpu_type = var.gpu_type
     }
 }
 
@@ -30,8 +32,8 @@ resource "google_compute_instance" "container_vm" {
     } ]
 
     network_interface {
-        network = var.network
-        subnetwork = var.subnetwork
+        network = local.network
+        subnetwork = local.subnetwork
         access_config {}
     }
 
@@ -52,7 +54,7 @@ resource "google_compute_instance" "container_vm" {
         on_host_maintenance = "TERMINATE"
     }
 
-    metadata_startup_script = data.template_file.startup_script.rendered    
+    metadata_startup_script = data.template_file.startup_script.rendered
 
 }
 

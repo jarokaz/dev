@@ -15,6 +15,12 @@ variable "network_name" {
     default     = ""
 }
 
+variable "subnet_name" {
+    description = "The name of the VPC subnetwork"
+    type        = string
+    default     = ""
+}
+
 variable "zones" {
     description = "The zones for clusters"
     type        = list

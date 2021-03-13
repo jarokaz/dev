@@ -1,5 +1,6 @@
 project_id = "jk-mlops-dev"
-network_name = ""
+network_name = "default"
+subnet_name = "default"
 name_prefix="jk-dsenv1"
 region="us-west1"
 zones=["us-west1-a"]
